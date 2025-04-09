@@ -3,8 +3,8 @@
  * the assignment.  Make sure to add your name and @oregonstate.edu email
  * address below:
  *
- * Name:
- * Email:
+ * Name: Owen Schlimgen
+ * Email: schlimgo@oregonstate.edu
  */
 
 #include <stdlib.h>
@@ -32,11 +32,14 @@
  *   initialized with the values provided.
  */
 struct product* create_product(char* name, int inventory, float price) {
-  struct product* prod = malloc(sizeof prod);
+  struct product* prod = malloc(sizeof* prod);
   assert(prod);
 
-  prod->name = strdup(name);
+  // Copy the  name of the product, allocating a new character array
+  prod->name = malloc(strlen(name) + 1);
   assert(prod->name);
+  strcpy(prod->name, name);
+  // Copy the rest of the values
   prod->inventory = inventory;
   prod->price = price;
 
